@@ -1,3 +1,21 @@
 lane :test do
-  teams_bot
+  teams_bot(
+    teams_url: "https://outlook.office.com/webhook/...",
+    title: "Welcome from Fastlane",
+    summary: "Integration is a success",
+    text: "Hi there !! I am [Teams Bot](https://github.com/huextrat/fastlane-plugin-teams_bot). I can send messages on Microsoft Teams very easily from Fastlane.",
+    activity_title: "Hey",
+    activity_subtitle: "Working on Fastlane",
+    activity_image: "https://seeklogo.com/images/F/fastlane-logo-6CA0B0B428-seeklogo.com.png",
+    facts: [
+      {
+        "name" => "Environment",
+        "value" => "Staging"
+      },
+      {
+        "name" => "Branch",
+        "value" => "Develop"
+      }
+    ]
+  )
 end

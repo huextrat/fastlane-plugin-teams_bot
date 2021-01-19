@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = 'extrat.h@gmail.com'
 
   spec.summary       = 'Easily alert a Microsoft Teams channel'
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-teams_bot"
+  spec.homepage      = "https://github.com/huextrat/fastlane-plugin-teams_bot"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
