@@ -1,0 +1,9 @@
+describe Fastlane::Actions::TeamsBotAction do
+  describe '#run' do
+    it 'prints a message' do
+      expect(Fastlane::UI).to receive(:message).with("The teams_bot plugin is working!")
+
+      Fastlane::Actions::TeamsBotAction.run(nil)
+    end
+  end
+end
