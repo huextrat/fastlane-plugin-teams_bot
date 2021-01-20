@@ -26,7 +26,6 @@ module Fastlane
       def self.send_message(url, payload)
         require 'net/http'
         require 'uri'
-        
         json_headers = { 'Content-Type' => 'application/json' }
         uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
