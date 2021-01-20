@@ -16,6 +16,8 @@ lane :test do
         "name" => "Branch",
         "value" => "Develop"
       }
-    ]
+    ],
+    theme_color: "321244",
+    use_markdown: true
   )
 end
