@@ -1,7 +1,7 @@
 source('https://rubygems.org')
 
 # Development dependencies follow the current fastlane plugin template.
-gem 'bundler'
+gem 'bundler', '>= 2.4', '< 3'
 gem 'fastlane', '>= 2.238.0'
 gem 'pry'
 gem 'rake'
