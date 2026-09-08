@@ -35,11 +35,12 @@ module Fastlane
       end
 
       def self.is_message_success(response)
-        if response.code.to_i == 200 && response.body.to_i == 1
+        if [200, 202].include?(response.code.to_i)
           UI.message("🍾 The message was sent successfully")
           true
         else
-          UI.user_error!("⚠️ An error occurred: #{response.body}")
+          error_details = response.body.to_s.empty? ? "No response body" : response.body
+          UI.user_error!("⚠️ An error occurred (Status #{response.code}): #{error_details}")
         end
       end
 
