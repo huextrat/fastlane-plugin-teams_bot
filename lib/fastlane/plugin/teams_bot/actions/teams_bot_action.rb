@@ -30,7 +30,7 @@ module Fastlane
         uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true
-        response = http.post(uri.path, payload.to_json, json_headers)
+        response = http.post(uri.request_uri, payload.to_json, json_headers)
         is_message_success(response)
       end
 
