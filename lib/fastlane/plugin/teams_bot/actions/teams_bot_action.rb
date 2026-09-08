@@ -1,4 +1,7 @@
 require 'fastlane/action'
+require 'json'
+require 'net/http'
+require 'uri'
 
 module Fastlane
   module Actions
@@ -10,13 +13,13 @@ module Fastlane
           "themeColor" => params[:theme_color],
           "title" => params[:title],
           "summary" => params[:summary],
-          "sections": [{
-              "activityTitle": params[:activity_title],
-              "activitySubtitle": params[:activity_subtitle],
-              "activityImage": params[:activity_image],
-              "text" => params[:text],
-              "facts": params[:facts],
-              "markdown": params[:use_markdown]
+          "sections" => [{
+            "activityTitle" => params[:activity_title],
+            "activitySubtitle" => params[:activity_subtitle],
+            "activityImage" => params[:activity_image],
+            "text" => params[:text],
+            "facts" => params[:facts],
+            "markdown" => params[:use_markdown]
           }]
         }
 
@@ -24,8 +27,6 @@ module Fastlane
       end
 
       def self.send_message(url, payload)
-        require 'net/http'
-        require 'uri'
         json_headers = { 'Content-Type' => 'application/json' }
         uri = URI.parse(url)
         http = Net::HTTP.new(uri.host, uri.port)
@@ -105,7 +106,7 @@ module Fastlane
                                        env_name: "TEAMS_MESSAGE_TEAMS_URL",
                                        sensitive: true,
                                        optional: false,
-                                       description: "The URL of the incoming Webhook you created on your Microsoft Teams channel",
+                                       description: "The URL of the webhook workflow you created for your Microsoft Teams channel",
                                        verify_block: proc do |value|
                                          UI.user_error!("Invalid URL, must start with https://") unless value.start_with?("https://")
                                        end)
@@ -115,7 +116,7 @@ module Fastlane
       def self.example_code
         [
           'teams_bot(
-            teams_url: "https://outlook.office.com/webhook/...",
+            teams_url: "https://prod-00.westeurope.logic.azure.com/workflows/.../invoke?api-version=...&sig=...",
             title: "Welcome from Fastlane",
             summary: "Integration is a success",
             text: "Hi there !! I am [Teams Bot](https://github.com/huextrat/fastlane-plugin-teams_bot). I can send messages on Microsoft Teams very easily from Fastlane.",
@@ -139,7 +140,7 @@ module Fastlane
       end
 
       def self.description
-        "Easily send a message to a Microsoft Teams channel through the Webhook connector"
+        "Easily send a message to a Microsoft Teams channel through a webhook workflow"
       end
 
       def self.details
@@ -155,7 +156,7 @@ module Fastlane
         # If your method provides a return value, you can describe here what it does
       end
 
-      def self.is_supported?(platform)
+      def self.is_supported?(_platform)
         true
       end
     end

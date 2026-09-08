@@ -1,6 +1,6 @@
 lane :test do
   teams_bot(
-    teams_url: 'https://outlook.office.com/webhook/...',
+    teams_url: 'https://prod-00.westeurope.logic.azure.com/workflows/.../invoke?api-version=...&sig=...',
     title: 'Welcome from Fastlane',
     summary: 'Integration is a success',
     text: 'Hi there !! I am [Teams Bot](https://github.com/huextrat/fastlane-plugin-teams_bot). I can send messages on Microsoft Teams very easily from Fastlane.',

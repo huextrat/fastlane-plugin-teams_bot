@@ -14,17 +14,20 @@ fastlane add_plugin teams_bot
 
 ## About teams_bot
 
-With this plugin you will be able to send a message on a microsoft teams channel.
+This plugin sends MessageCard notifications to a Microsoft Teams channel from a fastlane lane.
 
-Beforehand you must create a new incoming webhook on the Microsoft Teams channel of your choice, you can follow this documentation to help you do this: [Incoming Webhook](https://docs.microsoft.com/en-US/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook#add-an-incoming-webhook-to-a-teams-channel)
+Create a webhook with the Microsoft Teams **Workflows** app, then copy its complete HTTP POST URL. See Microsoft's guide to [create incoming webhooks with Workflows](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook#create-webhooks-using-workflows).
 
-`teams_bot` allows you to send a fully custom message to a specific incoming webhook.
+The generated URL contains required query parameters such as `api-version` and `sig`; pass the complete URL to `teams_url`.
+
+> [!NOTE]
+> Power Automate normally acknowledges a valid request with HTTP 202. This confirms that the workflow accepted the request for asynchronous processing, not that every later workflow step completed successfully.
 
 ## Usage
 
 ```ruby
 teams_bot(
-    teams_url: "<incoming webhook URL",
+    teams_url: "<workflow webhook URL>",
     title: "Welcome from Fastlane",
     text: "Hi there !! I am [Teams Bot](https://github.com/huextrat/fastlane-plugin-teams_bot). I can send messages on Microsoft Teams very easily from Fastlane.",
     activity_title: "Hey",
@@ -36,7 +39,7 @@ or
 
 ```ruby
 teams_bot(
-    teams_url: "<incoming webhook URL",
+    teams_url: "<workflow webhook URL>",
     title: "Welcome from Fastlane",
     text: "Hi there !! I am [Teams Bot](https://github.com/huextrat/fastlane-plugin-teams_bot). I can send messages on Microsoft Teams very easily from Fastlane.",
     activity_title: "Hey",
@@ -81,7 +84,7 @@ fastlane action teams_bot
 | text              | The message you want to display    | TEAMS_MESSAGE_TEXT         |         |
 | use_markdown      | Define to use or not markdown       | TEAMS_MESSAGE_USE_MARKDOWN  | true    |
 | facts             | Optional facts (assigned to, due date, status, branch, environment, ...)   | TEAMS_MESSAGE_FACTS        | []      |
-| teams_url         | The URL of the incoming Webhook you created on your Microsoft Teams channel   | TEAMS_MESSAGE_TEAMS_URL    |         |
+| teams_url         | The complete URL of the webhook workflow created for your Microsoft Teams channel | TEAMS_MESSAGE_TEAMS_URL |         |
 
 ## Example
 
